@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.VBox?>
+<GridPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Student_Controller">
+
+    <!--outermost gridpane constraints==============================================================================-->
+    <!--columns 0, 1, and 2 -->
+    <columnConstraints>
+        <ColumnConstraints prefWidth="110.0" />
+        <ColumnConstraints prefWidth="110.0" />
+        <ColumnConstraints prefWidth="50.0" />
+    </columnConstraints>
+
+    <!--rows 0 to 5-->
+  <rowConstraints>
+        <RowConstraints prefHeight="30.0" /> <!--0-->
+        <RowConstraints prefHeight="30.0" /> <!--1-->
+      <RowConstraints prefHeight="30.0" /> <!--2-->
+      <RowConstraints prefHeight="40.0" /> <!--3-->
+      <RowConstraints prefHeight="90" /> <!--4-->
+      <RowConstraints prefHeight="170" /> <!--5-->
+  </rowConstraints>
+    <!--============================================================================================================-->
+
+    <!--horizontal box container-->
+    <!--contains four text fields and their associated labels (and any buttons - add course button)-->
+    <!--=============================================================-->
+    <HBox GridPane.columnSpan="2" GridPane.rowSpan="4">
+        <!--shifts hbox horizontally and pushes it down-->
+        <padding>
+            <Insets left="20" top="10"/>
+        </padding>
+
+        <!--first inner gridpane for 4 fields with width and height constraints of each row and column-->
+        <GridPane>
+            <rowConstraints>
+                <RowConstraints prefHeight="50.0" />
+                <RowConstraints prefHeight="50.0" />
+                <RowConstraints prefHeight="50.0" />
+                <RowConstraints prefHeight="50.0" />
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints prefWidth="150.0" />
+                <ColumnConstraints prefWidth="200.0" />
+            <ColumnConstraints />
+            </columnConstraints>
+
+
+            <Label text="Student ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="id_input" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="first_name_input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="last_name_input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Course Code:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <!--second inner gridpane for course code text field and course addition button-->
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <!--row and column constraints for size and position of text field, button, and course addition
+                indicator message (shown when button is pressed)-->
+                <!--row 0 and 1-->
+                <rowConstraints>
+                    <RowConstraints prefHeight="40" />
+                    <RowConstraints prefHeight="10" />
+                </rowConstraints>
+                <!--columns 0 and 1-->
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="140" />
+                    <ColumnConstraints prefWidth="70" />
+                </columnConstraints>
+
+                <TextField fx:id="course_code_input" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Button onAction="#addCourse" text="+" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <GridPane.margin>
+                        <!--internal margin for left side of row 0, column 1 cell-->
+                        <Insets left="5" />
+                    </GridPane.margin>
+                </Button>
+                <Text fx:id="course_add_indicate" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+            </GridPane>
+        </GridPane>
+    </HBox>
+    <!--=======================================================================================================-->
+
+    <Label text="File Contents: " GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+        <GridPane.margin>
+            <Insets left="15" />
+        </GridPane.margin>
+    </Label>
+
+    <!--horizontal box moves vertical box horizontally-->
+    <!--==========================================================================================================-->
+    <HBox GridPane.rowIndex="4" GridPane.columnIndex="1">
+
+        <!--vertical box contains save and load buttons spaced out on top of each other-->
+        <VBox>
+            <HBox.margin>
+                <Insets left="20"/>
+            </HBox.margin>
+            <Button onAction="#saveStudentInfo" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                <VBox.margin>
+                    <!--internal margin for top side of row 4, columns 1 cell-->
+                    <Insets top="10" bottom="20" />
+                </VBox.margin>
+            </Button>
+
+            <Button onAction="#loadFile" text="Load" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                <GridPane.margin>
+                    <!--internal margin for top side of row 4, columns 1 cell-->
+                    <Insets top="50" />
+                </GridPane.margin>
+            </Button>
+        </VBox>
+    </HBox>
+    <!--=========================================================================================================-->
+
+
+    <Line endX="250" strokeWidth="0.1" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4">
+        <GridPane.margin>
+            <Insets left="20" top="5" />
+        </GridPane.margin>
+    </Line>
+
+    <TextArea fx:id="results" editable="false" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="5">
+        <GridPane.margin>
+            <Insets bottom="10" left="10" right="10" top="3" />
+        </GridPane.margin>
+    </TextArea>
+
+
+</GridPane>
